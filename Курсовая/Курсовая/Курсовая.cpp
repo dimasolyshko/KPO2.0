@@ -66,71 +66,136 @@ public:
     }
 
 };
+void ReadFromFileAboutUsers(string PathOfUserFile);
 void New_file(student Participant[], int count, string path);
 void SortAge(student Participant[], int count, string path);
 void AddPArticipant(student Participant[], int* count, string path);
 int main()
 {
     setlocale(LC_ALL, "ru");
+    bool IsAdmin = true;
     bool end = true;
+    string PathOfUserFile = "FileAboutUsers.txt";
     student* Member = new student[100];
     Member[0].SetParametrs("a", "b", "c", 5, 5.11, '0', '1', '0', '1', '0');
     Member[0].Print();
-}
-/*    while (end)
+    while (end)
     {
-        cout << "Выберите что хотите сделать!\n\n1 - Добавить участника" << 
-            "\n2 - Вывести информацию об участниках " << 
-            "\n3 - Сортировка по возрасту участников" << 
-            "\n4 - Удалить информацию об участнике" << 
-            "\n5 - Вывести участников старше 20 лет" << 
-            "\n6 - Конец программы " << endl;
-        int number;
-        cin >> number;
-        switch (number)
+        if (IsAdmin)
         {
-        case 1:
-        {
-            AddPArticipant(Participant, &count, path);
-            break;
-        }
-        case 2:
-        {
-            Info(Participant, count, path);
-            break;
-        }
-        case 3:
-        {
-            SortAge(Participant, count, path);
-            break;
-        }
-        case 4:
-        {
-            Delete(Participant, count);
-            New_file(Participant, count, path);
-            break;
-        }
-        case 5:
-        {
-            Molodie(Participant, count);
-            break;
-        }
-        case 6:
-        {
-            end = false;
-            break;
-        }
-        default:
-        {
-            cout << "Неправильный номер операции" << endl;
-            break;
-        }
+            cout << "Выберите что хотите сделать!\n\n1 - Посмотреть все учётные записи пользователей" <<
+                "\n2 - Отредактировать учётную запись" <<
+                "\n3 - Удалить учётную запись" <<
+                "\n4 - Создать файл" <<
+                "\n5 - Открыть файл" <<
+                "\n6 - Удалить файл" <<
+                "\n7 - Посмотреть все данные" <<
+                "\n8 - Добавить запись" <<
+                "\n9 - Удалить запись" <<
+                "\n10 - Вывести студентов желающих записаться на факультатив: " <<
+                "\n11 - Выполнить поиск данных" <<
+                "\n12 - Выполнить сортировку" << endl;
+            int number;
+            cin >> number;
+            switch (number)
+            {
+            case 1:
+            {
+                ReadFromFileAboutUsers(PathOfUserFile);
+                break;
+            }
+            case 2:
+            {
+                // Info(Participant, count, path); 
+                break;
+            }
+            case 3:
+            {
+                //SortAge(Participant, count, path); 
+                break;
+            }
+            case 4:
+            {
+                // Delete(Participant, count); 
+                // New_file(Participant, count, path); 
+                break;
+            }
+            case 5:
+            {
+                // Molodie(Participant, count); 
+                break;
+            }
+            case 6:
+            {
+                end = false;
+                break;
+            }
+            case 7:
+            {
+
+            }
+            case 8:
+            {
+
+            }
+            case 9:
+            {
+
+            }
+            case 10:
+            {
+
+            }
+            case 11:
+            {
+
+            }
+            case 12:
+            {
+
+            }
+            case 13:
+            {
+                end = false;
+                break;
+            }
+            default:
+            {
+                cout << "Неправильный номер операции" << endl;
+                break;
+            }
+            }
+
         }
     }
-    delete[] Participant;
     return 0;
 }
-void New_file(student Participant[], int count, string path)
+void ReadFromFileAboutUsers(string PathOfUserFile)
+{
+    ifstream fin;
+    fin.open(PathOfUserFile);
+    if (!fin.is_open())
+    {
+        cout << "Файл не открыт!" << endl;
+    }
+    else
+    {
+        cout << "Файл открыт!" << endl;
+        string str = "";
+        fin >> str;
+        while (!fin.eof())
+        {
+            fin >> str;
+            cout << "Логин: " << str << endl;
+            fin >> str;
+            cout << "Пароль: " << str << endl;
+            fin >> str;
+            cout << "Роль(1 - Администратор, 0 - Пользователь): " << str << endl;
+        }
+    }
+    fin.close();
+}
+/*void New_file(student Participant[], int count, string path)
 {
     ofstream fout;
     fout.open(path);
