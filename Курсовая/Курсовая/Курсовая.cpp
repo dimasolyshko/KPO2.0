@@ -1,75 +1,5 @@
-﻿#include <string> 
-#include <iostream> 
-#include <fstream> 
-using namespace std;
-class student
-{
-private:
-    string Surname, Name, Otch;
-    int NumberOfGroup;
-    double mark;
-    char Math, Physics, Programming, English, Database;
-public:
-    student()
-    {
-        this->Surname = "";
-        this->Name = "";
-        this->Otch = "";
-        this->NumberOfGroup = 0;
-        this->mark = 0.00;
-        this->Math = 0;
-        this->Physics = 0;
-        this->Programming = 0;
-        this->English = 0;
-        this->Database = 0;
-    }
-
-    student(string Fam, string Name, string Otch, int NumberOfGroup, double mark, char Math, char Physics, char Programming, char English, char Database)
-    {
-        this->Surname = Fam;
-        this->Name = Name;
-        this->Otch = Otch;
-        this->NumberOfGroup = NumberOfGroup;
-        this->mark = mark;
-        this->Math = Math;
-        this->Physics = Physics;
-        this->Programming = Programming;
-        this->English = English;
-        this->Database = Database;
-    }
-    void SetParametrs(string Surname, string Name, string Otch, int NumberOfGroup, double mark, char Math, char Physics, char Programming, char English, char Database)
-    {
-        this->Surname = Surname;
-        this->Name = Name;
-        this->Otch = Otch;
-        this->NumberOfGroup = NumberOfGroup;
-        this->mark = mark;
-        this->Math = Math;
-        this->Physics = Physics;
-        this->Programming = Programming;
-        this->English = English;
-        this->Database = Database;
-    }
-    void Print()
-    {
-        cout << "ФИО студента: " << Surname << "  " << Name << "  " << Otch << endl;
-        cout << "Номер Группы: " << NumberOfGroup << endl;
-        cout << "Средний Балл студента: " << mark << endl;
-        cout << "Факультатив по Математике (0 - Не записан, 1 - Записан) - " << Math << endl;
-        cout << "Факультатив по Физике (0 - Не записан, 1 - Записан) - " << Physics << endl;
-        cout << "Факультатив по Программированию (0 - Не записан, 1 - Записан) - " << Programming << endl;
-        cout << "Факультатив по Английскому языку (0 - Не записан, 1 - Записан) - " << English << endl;
-        cout << "Факультатив по Базам Данных (0 - Не записан, 1 - Записан) - " << Database << endl;
-    }
-    ~student()
-    {
-    }
-
-};
-void ReadFromFileAboutUsers(string PathOfUserFile);
-void New_file(student Participant[], int count, string path);
-void SortAge(student Participant[], int count, string path);
-void AddPArticipant(student Participant[], int* count, string path);
+﻿#include "ClassStudent.h"
+#include "Files.h"
 int main()
 {
     setlocale(LC_ALL, "ru");
@@ -77,8 +7,6 @@ int main()
     bool end = true;
     string PathOfUserFile = "FileAboutUsers.txt";
     student* Member = new student[100];
-    Member[0].SetParametrs("a", "b", "c", 5, 5.11, '0', '1', '0', '1', '0');
-    Member[0].Print();
     while (end)
     {
         if (IsAdmin)
@@ -94,7 +22,8 @@ int main()
                 "\n9 - Удалить запись" <<
                 "\n10 - Вывести студентов желающих записаться на факультатив: " <<
                 "\n11 - Выполнить поиск данных" <<
-                "\n12 - Выполнить сортировку" << endl;
+                "\n12 - Выполнить сортировку" <<
+                "\n13 - Выход из программы! " << endl;
             int number;
             cin >> number;
             switch (number)
@@ -170,32 +99,11 @@ int main()
     }
     return 0;
 }
-void ReadFromFileAboutUsers(string PathOfUserFile)
-{
-    ifstream fin;
-    fin.open(PathOfUserFile);
-    if (!fin.is_open())
-    {
-        cout << "Файл не открыт!" << endl;
-    }
-    else
-    {
-        cout << "Файл открыт!" << endl;
-        string str = "";
-        fin >> str;
-        while (!fin.eof())
-        {
-            fin >> str;
-            cout << "Логин: " << str << endl;
-            fin >> str;
-            cout << "Пароль: " << str << endl;
-            fin >> str;
-            cout << "Роль(1 - Администратор, 0 - Пользователь): " << str << endl;
-        }
-    }
-    fin.close();
-}
-/*void New_file(student Participant[], int count, string path)
+/*
+void New_file(student Participant[], int count, string path);
+void SortAge(student Participant[], int count, string path);
+void AddPArticipant(student Participant[], int* count, string path);
+void New_file(student Participant[], int count, string path)
 {
     ofstream fout;
     fout.open(path);
@@ -248,4 +156,5 @@ void AddPArticipant(student Participant[], int* count, string path)
     cin >> Participant[*count].Ves;
     (*count)++;
     New_file(Participant, *count, path);
-}*/
+}
+*/
