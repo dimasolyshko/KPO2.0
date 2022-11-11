@@ -3,15 +3,15 @@
 int main()
 {
     setlocale(LC_ALL, "ru");
-    bool IsAdmin = true;
     bool end = true;
     string PathOfUserFile = "FileAboutUsers.txt";
+    bool IsAdmin = CheckAdmin(PathOfUserFile);
     student* Member = new student[100];
     while (end)
     {
         if (IsAdmin)
         {
-            cout << "Выберите что хотите сделать!\n\n1 - Посмотреть все учётные записи пользователей" <<
+            cout << "\nУ вас есть права администратора\n\nВыберите что хотите сделать!\n\n1 - Посмотреть все учётные записи пользователей" <<
                 "\n2 - Отредактировать учётную запись" <<
                 "\n3 - Удалить учётную запись" <<
                 "\n4 - Создать файл" <<
