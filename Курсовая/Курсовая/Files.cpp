@@ -36,7 +36,7 @@ bool CheckAdmin(string PathOfUserFile)
         cin >> number;
         if (number == 0)
         {
-            while (NewUser)
+            while (NewUser) // Цикл, который будет проходить пока не будет успешно проверен логин на уникальность будущего аккаунта!
             {
                 NewUser = false;
                 cout << "Введите логин вашего аккаунта: ";
@@ -51,7 +51,7 @@ bool CheckAdmin(string PathOfUserFile)
                         fin >> CorrectLogin;
                         fin >> str;
                         fin >> str;
-                        if (CorrectLogin == login)
+                        if (CorrectLogin == login) // Проверка на уникальность введённого логина
                         {
                             cout << "Такой логин уже существует попробуйте другой" << endl;
                             NewUser = true;
@@ -66,7 +66,7 @@ bool CheckAdmin(string PathOfUserFile)
             ofstream fout;
             fout.open(PathOfUserFile, ios::app);
             if (!fout.is_open()) cout << "Файл не открыт!" << endl;
-            else
+            else // Запись данных об аккаунте в файл
             {
                 fout << login << endl;
                 fout << Pass << endl;
@@ -74,12 +74,12 @@ bool CheckAdmin(string PathOfUserFile)
             }
             cout << "Вы успешно зарегистрировались, Ваш логин " << login << endl;
             fout.close();
-            return false;
+            return false; // Возврашаем роль Пользователя, так как аккаунт был создан пользователем!
         }
         else if (number == 1)
         {
             bool end = true,Role = false;
-            while(end)
+            while(end) //Добавляем цикл, который будет проходить пока мы не войдём в аккаунт успешно!
             {
                 end = true;
                 ifstream fin;
@@ -95,22 +95,22 @@ bool CheckAdmin(string PathOfUserFile)
                     cin >> login;
                     cout << "Введите Пароль: ";
                     cin >> Pass;
-                    while (!fin.eof() && end)
+                    while (!fin.eof() && end) // Проходим по файлу до конца или до совпадения логина или пароля
                     {
                         fin >> CorrectLogin;
                         fin >> CorrectPass;
                         fin >> Role;
-                        if (login == CorrectLogin && Pass == CorrectPass)
+                        if (login == CorrectLogin && Pass == CorrectPass) // Проверка на совпадение пароля и логина
                         {
                             cout << "Вы успешно вошли в аккаунт!" << endl;
                             end = false;
                         }
                     }
-                    if (end) cout << "Вы неправильно ввели Пароль или Логин!\nПопробуйте снова" << endl;
+                    if (end) cout << "Вы неправильно ввели Пароль или Логин!\nПопробуйте снова" << endl; 
                 }
                 fin.close();
             }
-            return Role;
+            return Role; // Возвращаем роль
         }
         else cout << "Ошибка!Вы не ввели 1 либо 0\nПопробуйте снова!" << endl;
     }

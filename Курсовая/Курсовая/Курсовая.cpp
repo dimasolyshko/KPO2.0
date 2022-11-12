@@ -4,9 +4,9 @@ int main()
 {
     setlocale(LC_ALL, "ru");
     bool end = true;
-    string PathOfUserFile = "FileAboutUsers.txt";
-    bool IsAdmin = CheckAdmin(PathOfUserFile);
-    student* Member = new student[2];
+    string PathOfUserFile = "FileAboutUsers.txt"; 
+    bool IsAdmin = CheckAdmin(PathOfUserFile); // Определяем Роль для Нашего аккаунта (Администратор или Пользователь) + Авторизация или вход в аккаунт
+    student* Member = new student[2]; // Выделение памяти для Студентов
     while (end)
     {
         if (IsAdmin)
@@ -35,23 +35,18 @@ int main()
             }
             case 2:
             {
-                // Info(Participant, count, path); 
                 break;
             }
             case 3:
             {
-                //SortAge(Participant, count, path); 
                 break;
             }
             case 4:
             {
-                // Delete(Participant, count); 
-                // New_file(Participant, count, path); 
                 break;
             }
             case 5:
             {
-                // Molodie(Participant, count); 
                 break;
             }
             case 6:
@@ -102,62 +97,3 @@ int main()
     }
     return 0;
 }
-/*
-void New_file(student Participant[], int count, string path);
-void SortAge(student Participant[], int count, string path);
-void AddPArticipant(student Participant[], int* count, string path);
-void New_file(student Participant[], int count, string path)
-{
-    ofstream fout;
-    fout.open(path);
-    for (int i = 0; i < count; i++)
-    {
-        fout << "_________________________________" << endl << endl;
-        fout << "Страна участника - " << Participant[i].Country << endl;
-        fout << "Команда участника - " << Participant[i].Team << endl;
-        fout << "ФИО участника - " << Participant[i].Fam << " " << Participant[i].Name << " " << Participant[i].Otch << endl;
-        fout << "Номер участника - " << Participant[i].Number << endl;
-        fout << "Возраст участника - " << Participant[i].Year << endl;
-        fout << "Рост участника - " << Participant[i].Rost << endl;
-        fout << "Вес участника - " << Participant[i].Ves << endl;
-    }
-    fout.close();
-}
-void SortAge(student Participant[], int count, string path)
-{
-    for (int i = count - 1; i >= 0; i--)
-    {
-        for (int j = 0; j < i; j++)
-        {
-            if (Participant[j].Year > Participant[j + 1].Year)
-            {
-                student tmp = Participant[j];
-                Participant[j] = Participant[j + 1];
-                Participant[j + 1] = tmp;
-            }
-        }
-    }
-    cout << "Сортировка по возрасту: " << endl;
-    New_file(Participant, count, path);
-    Info(Participant, count, path);
-}
-void AddPArticipant(student Participant[], int* count, string path)
-{
-    cout << "Страна участника - ";
-    cin >> Participant[*count].Country;
-    cout << "Команда участника -  ";
-    cin >> Participant[*count].Team;
-    cout << "ФИО участника - ";
-    cin >> Participant[*count].Fam >> Participant[*count].Name >> Participant[*count].Otch;
-    cout << "Номер участника - ";
-    cin >> Participant[*count].Number;
-    cout << "Возраст участника - ";
-    cin >> Participant[*count].Year;
-    cout << "Рост участника - ";
-    cin >> Participant[*count].Rost;
-    cout << "Вес участника - ";
-    cin >> Participant[*count].Ves;
-    (*count)++;
-    New_file(Participant, *count, path);
-}
-*/

@@ -1,5 +1,5 @@
 #include "ClassStudent.h"
-student::student()
+student::student()// Конструктор без параметров
 {
     this->Surname = "";
     this->Name = "";
@@ -12,6 +12,7 @@ student::student()
     this->English = 0;
     this->Database = 0;
 }
+//Конструктор с параметрами
 student::student(string Fam, string Name, string Otch, int NumberOfGroup, double mark, char Math, char Physics, char Programming, char English, char Database)
 {
     this->Surname = Fam;
@@ -25,6 +26,7 @@ student::student(string Fam, string Name, string Otch, int NumberOfGroup, double
     this->English = English;
     this->Database = Database;
 }
+//Сеттер для всех параметров
 void student::SetParametrs(string Surname, string Name, string Otch, int NumberOfGroup, double mark, char Math, char Physics, char Programming, char English, char Database)
 {
     this->Surname = Surname;
@@ -38,6 +40,7 @@ void student::SetParametrs(string Surname, string Name, string Otch, int NumberO
     this->English = English;
     this->Database = Database;
 }
+// Метод для вывода информации на экран
 void student::Print()
 {
     cout << "ФИО студента: " << Surname << "  " << Name << "  " << Otch << endl;
