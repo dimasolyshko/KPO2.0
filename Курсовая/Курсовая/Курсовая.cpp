@@ -6,7 +6,7 @@ int main()
     bool end = true;
     string PathOfUserFile = "FileAboutUsers.txt";
     bool IsAdmin = CheckAdmin(PathOfUserFile);
-    student* Member = new student[100];
+    student* Member = new student[2];
     while (end)
     {
         if (IsAdmin)
@@ -94,7 +94,10 @@ int main()
                 break;
             }
             }
-
+        }
+        else
+        {
+            cout << "Права Пользователя:" << endl;
         }
     }
     return 0;
