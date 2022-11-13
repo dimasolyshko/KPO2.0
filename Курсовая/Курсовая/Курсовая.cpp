@@ -93,6 +93,7 @@ int main()
         else
         {
             cout << "Права Пользователя:" << endl;
+            end = false;
         }
     }
     return 0;

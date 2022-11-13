@@ -11,7 +11,6 @@ void ReadFromFileAboutUsers(string PathOfUserFile)
     {
         cout << "Файл открыт!" << endl;
         string str = "";
-        fin >> str;
         while (!fin.eof())
         {
             cout << "---------------------------------------------------------------------------------------------------------" << endl;
