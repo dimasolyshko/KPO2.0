@@ -45,6 +45,11 @@ int main()
             }
             case 4:
             {
+                string Path;
+                cout << "Введите название нового файла" << endl;
+                cin >> Path;
+                Path += ".txt";
+                WriteInFileInfoAboutStudents(Path, Member, NumberOfStudents);
                 break;
             }
             case 5:
@@ -53,7 +58,12 @@ int main()
             }
             case 6:
             {
-                end = false;
+                string Path;
+                cout << "Введите имя файла: ";
+                cin >> Path;
+                Path += ".txt";
+                if (remove(Path.c_str()) == 0) cout << "Файл успешно удалён!" << endl;
+                else cout << "Такого файла не существует!" << endl;
                 break;
             }
             case 7:

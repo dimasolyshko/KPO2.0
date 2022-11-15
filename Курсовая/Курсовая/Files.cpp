@@ -147,4 +147,30 @@ void DataAboutStudentsFromFile(string PathOfStudentFile, student *(&Member), int
     }
     fin.close();
 }
+void WriteInFileInfoAboutStudents(string PathOfStudentFile, student* (&Member), int& n)
+{
+    ofstream fout;
+    fout.open(PathOfStudentFile);
+    if (!fout.is_open())
+    {
+        cout << "Файл не открыт!" << endl;
+    }
+    else
+    {
+        cout << "Файл открыт!" << endl;
+        fout << n << endl;
+        for (int i = 0; i < n; i++)
+        {
+            fout << Member[i].GetSurName() << " " << Member[i].GetName() << " " << Member[i].GetOtch() << endl;
+            fout << Member[i].GetNumberOfGroup() << endl;
+            fout << Member[i].GetMark() << endl;
+            fout << Member[i].GetMath() << endl;
+            fout << Member[i].GetPhysics() << endl;
+            fout << Member[i].GetProgramming() << endl;
+            fout << Member[i].GetEnglish() << endl;
+            fout << Member[i].GetDataBase() << endl;
+        }
+    }
+
+}
 
