@@ -43,6 +43,7 @@ void student::SetParametrs(string Surname, string Name, string Otch, int NumberO
 // Метод для вывода информации на экран
 void student::Print()
 {
+    cout << "--------------------------------------------------------------------" << endl;
     cout << "ФИО студента: " << Surname << "  " << Name << "  " << Otch << endl;
     cout << "Номер Группы: " << NumberOfGroup << endl;
     cout << "Средний Балл студента: " << mark << endl;

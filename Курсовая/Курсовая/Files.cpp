@@ -114,3 +114,37 @@ bool CheckAdmin(string PathOfUserFile)
         else cout << "Ошибка!Вы не ввели 1 либо 0\nПопробуйте снова!" << endl;
     }
 }
+void DataAboutStudentsFromFile(string PathOfStudentFile, student *(&Member), int &n)
+{
+    setlocale(LC_ALL, "ru");
+    ifstream fin;
+    fin.open(PathOfStudentFile);
+    if (!fin.is_open())
+    {
+        cout << "Файл не открыт!" << endl;
+    }
+    else
+    {
+        cout << "Файл открыт!" << endl;
+        fin >> n;
+        string Surname, Name, Otch;
+        int NumberOfGroup;
+        double mark;
+        char Math, Physics, Programming, English, Database;
+        Member = new student[n];
+        for (int i = 0; i < n; i++)
+        {
+            fin >> Surname >> Name >> Otch;
+            fin >> NumberOfGroup;
+            fin >> mark;
+            fin >> Math;
+            fin >> Physics;
+            fin >> Programming;
+            fin >> English;
+            fin >> Database;
+            Member[i].SetParametrs(Surname, Name, Otch, NumberOfGroup, mark, Math, Physics, Programming, English, Database);
+        }
+    }
+    fin.close();
+}
+

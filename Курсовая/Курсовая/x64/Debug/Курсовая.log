@@ -1,2 +1,7 @@
-﻿  Files.cpp
-  Курсовая.vcxproj -> D:\гитхаб разработки\KPO2.0\Курсовая\Курсовая\x64\Debug\Курсовая.exe
+﻿D:\программирование 1\MSBuild\Current\Bin\Microsoft.Common.CurrentVersion.targets(5470,5): warning MSB3061: Не удается удалить файл "D:\гитхаб разработки\KPO2.0\Курсовая\Курсовая\x64\Debug\Курсовая.exe". Отказано в доступе по пути "D:\гитхаб разработки\KPO2.0\Курсовая\Курсовая\x64\Debug\Курсовая.exe".
+D:\программирование 1\MSBuild\Microsoft\VC\v160\Microsoft.CppClean.targets(77,5): warning : Отказано в доступе по пути "d:\гитхаб разработки\kpo2.0\курсовая\курсовая\x64\debug\курсовая.exe".
+  ClassStudent.cpp
+  Files.cpp
+  Курсовая.cpp
+  Создание кода...
+LINK : fatal error LNK1104: не удается открыть файл "D:\гитхаб разработки\KPO2.0\Курсовая\Курсовая\x64\Debug\Курсовая.exe"

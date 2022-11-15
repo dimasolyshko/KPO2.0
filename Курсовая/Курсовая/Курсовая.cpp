@@ -3,10 +3,12 @@
 int main()
 {
     setlocale(LC_ALL, "ru");
+    int NumberOfStudents = 0;
     bool end = true;
-    string PathOfUserFile = "FileAboutUsers.txt"; 
+    string PathOfUserFile = "FileAboutUsers.txt", PathOfStudentFile = "FileAboutStudents.txt";
     bool IsAdmin = CheckAdmin(PathOfUserFile); // Определяем Роль для Нашего аккаунта (Администратор или Пользователь) + Авторизация или вход в аккаунт
-    student* Member = new student[2]; // Выделение памяти для Студентов
+    student* Member = new student [NumberOfStudents]; // Выделение памяти для Студентов
+    DataAboutStudentsFromFile(PathOfStudentFile, Member, NumberOfStudents);
     while (end)
     {
         if (IsAdmin)
@@ -56,7 +58,7 @@ int main()
             }
             case 7:
             {
-
+                for (int i = 0; i < NumberOfStudents; i++) Member[i].Print();                 
             }
             case 8:
             {
