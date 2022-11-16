@@ -1,15 +1,23 @@
-2
-aaa hgf gf
-56
-8.44
+3
+Snopik Adrey Petrovich
+65
+3.55
+0
+0
+0
+0
+0
+Snop Adey Provich
+63
+3.25
+0
+0
+0
 1
 0
-0
-0
-0
-fgf g g
-54
-3.56
+I A D
+76
+7.65
 1
 0
 0

@@ -9,7 +9,6 @@ void ReadFromFileAboutUsers(string PathOfUserFile)
     }
     else
     {
-        cout << "Файл открыт!" << endl;
         string str = "";
         while (!fin.eof())
         {
@@ -125,13 +124,43 @@ void DataAboutStudentsFromFile(string PathOfStudentFile, student *(&Member), int
     }
     else
     {
-        cout << "Файл открыт!" << endl;
         fin >> n;
         string Surname, Name, Otch;
         int NumberOfGroup;
         double mark;
         char Math, Physics, Programming, English, Database;
         Member = new student[n];
+        for (int i = 0; i < n; i++)
+        {
+            fin >> Surname >> Name >> Otch;
+            fin >> NumberOfGroup;
+            fin >> mark;
+            fin >> Math;
+            fin >> Physics;
+            fin >> Programming;
+            fin >> English;
+            fin >> Database;
+            Member[i].SetParametrs(Surname, Name, Otch, NumberOfGroup, mark, Math, Physics, Programming, English, Database);
+        }
+    }
+    fin.close();
+}
+void OldDataAboutStudentsFromFile(string PathOfStudentFile, student* (&Member), int n)
+{
+    setlocale(LC_ALL, "ru");
+    ifstream fin;
+    fin.open(PathOfStudentFile);
+    if (!fin.is_open())
+    {
+        cout << "Файл не открыт!" << endl;
+    }
+    else
+    {
+        fin >> n;
+        string Surname, Name, Otch;
+        int NumberOfGroup;
+        double mark;
+        char Math, Physics, Programming, English, Database;
         for (int i = 0; i < n; i++)
         {
             fin >> Surname >> Name >> Otch;
@@ -157,7 +186,6 @@ void WriteInFileInfoAboutStudents(string PathOfStudentFile, student* (&Member), 
     }
     else
     {
-        cout << "Файл открыт!" << endl;
         fout << n << endl;
         for (int i = 0; i < n; i++)
         {

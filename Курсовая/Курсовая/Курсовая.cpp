@@ -1,4 +1,5 @@
 ﻿#include "ClassStudent.h"
+#include "Functions.h"
 #include "Files.h"
 int main()
 {
@@ -68,27 +69,31 @@ int main()
             }
             case 7:
             {
-                for (int i = 0; i < NumberOfStudents; i++) Member[i].Print();                 
+                for (int i = 0; i < NumberOfStudents; i++) Member[i].Print();   
+                break;
             }
             case 8:
             {
-
+                AddStudent(PathOfStudentFile,Member, NumberOfStudents);
+                WriteInFileInfoAboutStudents(PathOfStudentFile, Member, NumberOfStudents);
+                break;
             }
             case 9:
             {
-
+                break;
             }
             case 10:
             {
-
+                break;
             }
             case 11:
             {
-
+                FindDataAbout(Member, NumberOfStudents);
+                break;
             }
             case 12:
             {
-
+                break;
             }
             case 13:
             {
