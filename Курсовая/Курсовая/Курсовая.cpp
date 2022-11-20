@@ -4,12 +4,14 @@
 int main()
 {
     setlocale(LC_ALL, "ru");
-    int NumberOfStudents = 0;
+    int NumberOfStudents = 0, NumberOfUsers = 0;
     bool end = true;
     string PathOfUserFile = "FileAboutUsers.txt", PathOfStudentFile = "FileAboutStudents.txt";
     bool IsAdmin = CheckAdmin(PathOfUserFile); // Определяем Роль для Нашего аккаунта (Администратор или Пользователь) + Авторизация или вход в аккаунт
     student* Member = new student [NumberOfStudents]; // Выделение памяти для Студентов
+    User* Account = new User[NumberOfUsers];
     DataAboutStudentsFromFile(PathOfStudentFile, Member, NumberOfStudents);
+    DataAboutUsersFromFile(PathOfUserFile, Account, NumberOfUsers);
     while (end)
     {
         if (IsAdmin)
@@ -38,6 +40,8 @@ int main()
             }
             case 2:
             {
+                RedactUsers(PathOfUserFile,Account,NumberOfUsers);
+                WriteInFileInfoAboutUsers(PathOfUserFile, Account, NumberOfUsers);
                 break;
             }
             case 3:

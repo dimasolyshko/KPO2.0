@@ -28,3 +28,13 @@ public:
     void Print(); //Вывод Информации о студенте
     ~student() {}; //Деструктор
 };
+class User
+{
+public:
+    string Login;
+    string Pass;
+    char Role;
+    User();
+    ~User() {};
+    
+};
