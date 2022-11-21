@@ -1,4 +1,4 @@
-3
+4
 Snopik Adrey Petrovich
 65
 3.55
@@ -22,4 +22,12 @@ I A D
 0
 0
 0
+1
+Solyshko Dmit And
+43
+7.56
+1
+1
+1
+1
 1

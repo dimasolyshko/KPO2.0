@@ -1,28 +1,4 @@
 #include "Files.h"
-void ReadFromFileAboutUsers(string PathOfUserFile)
-{
-    ifstream fin;
-    fin.open(PathOfUserFile);
-    if (!fin.is_open())
-    {
-        cout << "Файл не открыт!" << endl;
-    }
-    else
-    {
-        string str = "";
-        while (!fin.eof())
-        {
-            cout << "---------------------------------------------------------------------------------------------------------" << endl;
-            fin >> str;
-            cout << "Логин:  |" << str << endl;
-            fin >> str;
-            cout << "Пароль:|" << str << endl;
-            fin >> str;
-            cout << "Роль: |" << str << endl;
-        }
-    }
-    fin.close();
-}
 bool CheckAdmin(string PathOfUserFile)
 {
     while (true)
@@ -237,13 +213,11 @@ int CheckCountOfUsers(string PathOfUserFile)
         while (!fin.eof())
         {
             fin >> str;
-            fin >> str;
-            fin >> str;
             n++;
         }
     }
     fin.close();
-    return --n;
+    return (n / 3);
 }
 void RedactUsers(string PathOfUsersFile, User* (&Account), int& n)
 {

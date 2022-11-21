@@ -35,7 +35,7 @@ int main()
             {
             case 1:
             {
-                ReadFromFileAboutUsers(PathOfUserFile);
+                for (int i = 0; i < NumberOfUsers; i++) Account[i].Print();
                 break;
             }
             case 2:
@@ -88,6 +88,7 @@ int main()
             }
             case 10:
             {
+                ITask(Member, NumberOfStudents);
                 break;
             }
             case 11:
@@ -97,6 +98,7 @@ int main()
             }
             case 12:
             {
+                SortMenu(Member, NumberOfStudents);
                 break;
             }
             case 13:

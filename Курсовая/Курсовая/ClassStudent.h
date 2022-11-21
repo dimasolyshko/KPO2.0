@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include <string.h>
+#include <algorithm>
 using namespace std;
 class student
 {
@@ -34,7 +35,9 @@ public:
     string Login;
     string Pass;
     char Role;
+
     User();
+    void Print(); //Вывод Информации о пользователе
     ~User() {};
     
 };
