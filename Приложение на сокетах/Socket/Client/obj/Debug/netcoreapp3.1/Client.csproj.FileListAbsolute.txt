@@ -1,0 +1,13 @@
+D:\C# проекты\Socket\Client\bin\Debug\netcoreapp3.1\Client.exe
+D:\C# проекты\Socket\Client\bin\Debug\netcoreapp3.1\Client.deps.json
+D:\C# проекты\Socket\Client\bin\Debug\netcoreapp3.1\Client.runtimeconfig.json
+D:\C# проекты\Socket\Client\bin\Debug\netcoreapp3.1\Client.runtimeconfig.dev.json
+D:\C# проекты\Socket\Client\bin\Debug\netcoreapp3.1\Client.dll
+D:\C# проекты\Socket\Client\bin\Debug\netcoreapp3.1\Client.pdb
+D:\C# проекты\Socket\Client\obj\Debug\netcoreapp3.1\Client.GeneratedMSBuildEditorConfig.editorconfig
+D:\C# проекты\Socket\Client\obj\Debug\netcoreapp3.1\Client.AssemblyInfoInputs.cache
+D:\C# проекты\Socket\Client\obj\Debug\netcoreapp3.1\Client.AssemblyInfo.cs
+D:\C# проекты\Socket\Client\obj\Debug\netcoreapp3.1\Client.csproj.CoreCompileInputs.cache
+D:\C# проекты\Socket\Client\obj\Debug\netcoreapp3.1\Client.dll
+D:\C# проекты\Socket\Client\obj\Debug\netcoreapp3.1\Client.pdb
+D:\C# проекты\Socket\Client\obj\Debug\netcoreapp3.1\Client.genruntimeconfig.cache
