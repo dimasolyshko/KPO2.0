@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yvUK9LMHvBbmsbyrTWdqkVez/34vBqsKutB8b+ZxJkhTmOZ0hD0VhFw3gqjCbW+mj1wqeWawuxW3vzJP5W9vLQ==",
+  "dgSpecHash": "JAzzAq7t7GYOwtewE3Sc/XHAUCdKxqQBMVmFqsnte90nIAqG0u+O5XIzhexcd4XQSk/wQ+L2grO0obNxPNvDqQ==",
   "success": true,
-  "projectFilePath": "D:\\C# проекты\\Socket\\Client\\Client.csproj",
+  "projectFilePath": "D:\\гитхаб разработки\\KPO2.0\\Приложение на сокетах\\Socket\\Client\\Client.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

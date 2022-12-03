@@ -11,3 +11,17 @@ D:\C# проекты\Socket\Client\obj\Debug\netcoreapp3.1\Client.csproj.CoreCom
 D:\C# проекты\Socket\Client\obj\Debug\netcoreapp3.1\Client.dll
 D:\C# проекты\Socket\Client\obj\Debug\netcoreapp3.1\Client.pdb
 D:\C# проекты\Socket\Client\obj\Debug\netcoreapp3.1\Client.genruntimeconfig.cache
+D:\гитхаб разработки\KPO2.0\Приложение на сокетах\Socket\Client\bin\Debug\netcoreapp3.1\Client.exe
+D:\гитхаб разработки\KPO2.0\Приложение на сокетах\Socket\Client\bin\Debug\netcoreapp3.1\Client.deps.json
+D:\гитхаб разработки\KPO2.0\Приложение на сокетах\Socket\Client\bin\Debug\netcoreapp3.1\Client.runtimeconfig.json
+D:\гитхаб разработки\KPO2.0\Приложение на сокетах\Socket\Client\bin\Debug\netcoreapp3.1\Client.runtimeconfig.dev.json
+D:\гитхаб разработки\KPO2.0\Приложение на сокетах\Socket\Client\bin\Debug\netcoreapp3.1\Client.dll
+D:\гитхаб разработки\KPO2.0\Приложение на сокетах\Socket\Client\bin\Debug\netcoreapp3.1\Client.pdb
+D:\гитхаб разработки\KPO2.0\Приложение на сокетах\Socket\Client\obj\Debug\netcoreapp3.1\Client.GeneratedMSBuildEditorConfig.editorconfig
+D:\гитхаб разработки\KPO2.0\Приложение на сокетах\Socket\Client\obj\Debug\netcoreapp3.1\Client.AssemblyInfoInputs.cache
+D:\гитхаб разработки\KPO2.0\Приложение на сокетах\Socket\Client\obj\Debug\netcoreapp3.1\Client.AssemblyInfo.cs
+D:\гитхаб разработки\KPO2.0\Приложение на сокетах\Socket\Client\obj\Debug\netcoreapp3.1\Client.csproj.CoreCompileInputs.cache
+D:\гитхаб разработки\KPO2.0\Приложение на сокетах\Socket\Client\obj\Debug\netcoreapp3.1\Client.dll
+D:\гитхаб разработки\KPO2.0\Приложение на сокетах\Socket\Client\obj\Debug\netcoreapp3.1\Client.pdb
+D:\гитхаб разработки\KPO2.0\Приложение на сокетах\Socket\Client\obj\Debug\netcoreapp3.1\Client.genruntimeconfig.cache
+D:\гитхаб разработки\KPO2.0\Приложение на сокетах\Socket\Client\obj\Debug\netcoreapp3.1\Client.csproj.AssemblyReference.cache

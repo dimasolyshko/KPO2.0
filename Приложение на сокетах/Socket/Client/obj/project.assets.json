@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\C# проекты\\Socket\\Client\\Client.csproj",
+      "projectUniqueName": "D:\\гитхаб разработки\\KPO2.0\\Приложение на сокетах\\Socket\\Client\\Client.csproj",
       "projectName": "Client",
-      "projectPath": "D:\\C# проекты\\Socket\\Client\\Client.csproj",
+      "projectPath": "D:\\гитхаб разработки\\KPO2.0\\Приложение на сокетах\\Socket\\Client\\Client.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "D:\\C# проекты\\Socket\\Client\\obj\\",
+      "outputPath": "D:\\гитхаб разработки\\KPO2.0\\Приложение на сокетах\\Socket\\Client\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\программирование 3\\NuGetPackages"

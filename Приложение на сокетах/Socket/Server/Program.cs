@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -34,11 +35,14 @@ namespace ServerTCP
                 while (Listener.Available > 0); // до тех пор пока есть данные
 
                 Console.WriteLine(data); // проверка строки
+                int row = 0;
+                database[] Db = new database[row];
                 Listener.Send(Encoding.UTF8.GetBytes("Всё хорошо! Сообщение отправлено!"));
                 Listener.Shutdown(SocketShutdown.Both);
                 Listener.Close(); // закрытие клиента
             }
         }
+        
     }
     class database
     {
