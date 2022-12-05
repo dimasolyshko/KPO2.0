@@ -16,13 +16,18 @@ namespace ServerTCP
                 // чтение из файла
                 using (StreamReader reader = new StreamReader(path))
                 {
+                    int count = 0;
                     string[] words;
                     string line;
                     while ((line = reader.ReadLine()) != null)
                     {
-                        Array.Resize(ref Db, ++row);
-                        words = line.Split(' ');
-                        Db[row - 1] = new database(words[0],Convert.ToInt32(words[1]));                   
+                        if (count != 0)
+                        {
+                            Array.Resize(ref Db, ++row);
+                            words = line.Split(' ');
+                            Db[row - 1] = new database(words[0], Convert.ToInt32(words[1]));
+                        }
+                        count++;
                     }
                 }
                 for (int i = 0; i < row; i++) Db[i].Print();
