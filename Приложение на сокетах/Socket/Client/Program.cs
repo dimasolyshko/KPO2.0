@@ -17,7 +17,7 @@ namespace ClientTCP
                 var tcpEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
                 var tcpSoket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp); // подключение сокета
 
-                Console.WriteLine("Введите сообщение!");
+                Console.WriteLine("\nВведите команду!");
                 var message = Console.ReadLine(); // переменная для сообщения
                 if (message == "exit") end = false;
 

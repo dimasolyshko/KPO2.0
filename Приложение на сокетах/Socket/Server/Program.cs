@@ -3,16 +3,16 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ServerTCP
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            void ReadInfoAboutDataBase(ref database [] Db, ref int row)
+            void ReadInfoAboutDataBase(ref database [] Db, ref int row,string path)
             {
-                string path = "DataBase.txt";   // путь к файлу
                 // чтение из файла
                 using (StreamReader reader = new StreamReader(path))
                 {
@@ -24,17 +24,18 @@ namespace ServerTCP
                         if (count != 0)
                         {
                             Array.Resize(ref Db, ++row);
-                            words = line.Split(' ');
+                            words = line.Split("                         ");
                             Db[row - 1] = new database(words[0], Convert.ToInt32(words[1]));
                         }
                         count++;
                     }
                 }
-                for (int i = 0; i < row; i++) Db[i].Print();
+               // for (int i = 0; i < row; i++) Db[i].Print();
             }
+            string path = "DataBase.txt";
             int row = 0;
             database[] Db = new database[row];
-            ReadInfoAboutDataBase(ref Db, ref row);
+            ReadInfoAboutDataBase(ref Db, ref row,path) ;
             Console.WriteLine(row);
 
             const string ip = "127.0.0.1";
@@ -61,7 +62,9 @@ namespace ServerTCP
                 while (Listener.Available > 0); // до тех пор пока есть данные
 
                 Console.WriteLine(data); // проверка строки
-                Listener.Send(Encoding.UTF8.GetBytes("Всё хорошо! Сообщение отправлено!"));
+                string fileText = await File.ReadAllTextAsync(path);
+                Listener.Send(Encoding.UTF8.GetBytes("\n       База данных \n"));
+                Listener.Send(Encoding.UTF8.GetBytes(fileText));
                 Listener.Shutdown(SocketShutdown.Both);
                 Listener.Close(); // закрытие клиента
             }
