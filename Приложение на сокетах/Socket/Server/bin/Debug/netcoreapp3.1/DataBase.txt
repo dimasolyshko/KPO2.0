@@ -1,4 +1,10 @@
-Name                         Age
-Yura                         19 
-Ur                           39
-jf                           94     
+Name    Age
+Yura    19 
+Ur      39
+jf      94
+Yura    54
+Dima    45
+Us      56
+jgfg    43
+reer    76
+fdfd    67 
