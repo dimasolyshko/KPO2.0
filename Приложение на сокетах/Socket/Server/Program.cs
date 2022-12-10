@@ -51,6 +51,15 @@ namespace ServerTCP
                         }
                     }
             }
+            string ConvertToNormalString(string str)
+            {
+                string newstr = null;
+                for (int i = 0, j = 0; i < str.Length; i++)
+                {
+                    if (str[i] != '(' && str[i] != ',' && str[i] != ')' && str[i] != '\'') newstr += str[i];
+                }
+                return newstr;
+            }
             void SortNameReverse(ref database[] Db, ref int row)
             {
                 for (int j = 0; j < row; j++)
@@ -140,6 +149,14 @@ namespace ServerTCP
                                             if (Convert.ToInt32(words[j + 3]) == Db[l].age) message = message + Db[l].name + "   " + Db[l].age + "\n";
                                         }
                                     }
+                                    else if (words[j + 1] == Age && words[j + 2] == "!=")// SELECT * FROM People WHERE age = 
+                                    {
+                                        CheckOrderBy(words, ref Db, ref row, ref IsCommand, j + 4, 8);
+                                        for (int l = 0; l < Db.Length; l++)
+                                        {
+                                            if (Convert.ToInt32(words[j + 3]) != Db[l].age) message = message + Db[l].name + "   " + Db[l].age + "\n";
+                                        }
+                                    }
                                     else if (words[j + 1] == Age && words[j + 2] == ">")// SELECT * FROM People WHERE age > 
                                     {
                                         CheckOrderBy(words, ref Db, ref row, ref IsCommand, j + 4, 8);
@@ -178,6 +195,14 @@ namespace ServerTCP
                                         for (int l = 0; l < Db.Length; l++)
                                         {
                                             if (words[j + 3] == Db[l].name) message = message + Db[l].name + "   " + Db[l].age + "\n";
+                                        }
+                                    }
+                                    else if (words[j + 1] == Name && words[j + 2] == "!=") // SELECT * FROM People WHERE name = 
+                                    {
+                                        CheckOrderBy(words, ref Db, ref row, ref IsCommand, j + 4, 8);
+                                        for (int l = 0; l < Db.Length; l++)
+                                        {
+                                            if (words[j + 3] != Db[l].name) message = message + Db[l].name + "   " + Db[l].age + "\n";
                                         }
                                     }
                                     else if (words[j + 1] == Name && words[j + 2] == ">")// SELECT * FROM People WHERE name >
@@ -222,7 +247,11 @@ namespace ServerTCP
                                     }
                                     else IsCommand = false;
                                 }
-                                else if (words[j] == "ORDER") CheckOrderBy(words, ref Db, ref row, ref IsCommand, j, 4);
+                                else if (words[j] == "ORDER")
+                                {
+                                    CheckOrderBy(words, ref Db, ref row, ref IsCommand, j, 4);
+                                    for (int l = 0; l < Db.Length; l++)  message = message + Db[l].name + "   " + Db[l].age + "\n";
+                                }
                                 else IsCommand = false;
                             } // SELECT * FROM People
                             else if (words[i] == Name && words[i + 1] == "FROM" && words[i + 2] == table)// SELECT name FROM People
@@ -242,6 +271,14 @@ namespace ServerTCP
                                         for (int l = 0; l < Db.Length; l++)
                                         {
                                             if (Convert.ToInt32(words[j + 3]) == Db[l].age) message = message + Db[l].name + "\n";
+                                        }
+                                    }
+                                    else if (words[j + 1] == Age && words[j + 2] == "!=")// SELECT * FROM People WHERE age = 
+                                    {
+                                        CheckOrderBy(words, ref Db, ref row, ref IsCommand, j + 4, 8);
+                                        for (int l = 0; l < Db.Length; l++)
+                                        {
+                                            if (Convert.ToInt32(words[j + 3]) != Db[l].age) message = message + Db[l].name + "\n";
                                         }
                                     }
                                     else if (words[j + 1] == Age && words[j + 2] == ">")// SELECT * FROM People WHERE age > 
@@ -282,6 +319,14 @@ namespace ServerTCP
                                         for (int l = 0; l < Db.Length; l++)
                                         {
                                             if (words[j + 3] == Db[l].name) message = message + Db[l].name + "\n";
+                                        }
+                                    }
+                                    else if (words[j + 1] == Name && words[j + 2] == "!=") // SELECT * FROM People WHERE name != 
+                                    {
+                                        CheckOrderBy(words, ref Db, ref row, ref IsCommand, j + 4, 8);
+                                        for (int l = 0; l < Db.Length; l++)
+                                        {
+                                            if (words[j + 3] != Db[l].name) message = message + Db[l].name + "\n";
                                         }
                                     }
                                     else if (words[j + 1] == Name && words[j + 2] == ">")// SELECT * FROM People WHERE name >
@@ -355,6 +400,14 @@ namespace ServerTCP
                                             if (Convert.ToInt32(words[j + 3]) == Db[l].age) message = message + Db[l].age + "\n";
                                         }
                                     }
+                                    else if (words[j + 1] == Age && words[j + 2] == "!=")// SELECT * FROM People WHERE age = 
+                                    {
+                                        CheckOrderBy(words, ref Db, ref row, ref IsCommand, j + 4, 8);
+                                        for (int l = 0; l < Db.Length; l++)
+                                        {
+                                            if (Convert.ToInt32(words[j + 3]) != Db[l].age) message = message + Db[l].age + "\n";
+                                        }
+                                    }
                                     else if (words[j + 1] == Age && words[j + 2] == ">")// SELECT * FROM People WHERE age > 
                                     {
                                         CheckOrderBy(words, ref Db, ref row, ref IsCommand, j + 4, 8);
@@ -393,6 +446,14 @@ namespace ServerTCP
                                         for (int l = 0; l < Db.Length; l++)
                                         {
                                             if (words[j + 3] == Db[l].name) message = message + Db[l].age + "\n";
+                                        }
+                                    }
+                                    else if (words[j + 1] == Name && words[j + 2] == "!=") // SELECT * FROM People WHERE name != 
+                                    {
+                                        CheckOrderBy(words, ref Db, ref row, ref IsCommand, j + 4, 8);
+                                        for (int l = 0; l < Db.Length; l++)
+                                        {
+                                            if (words[j + 3] != Db[l].name) message = message + Db[l].age + "\n";
                                         }
                                     }
                                     else if (words[j + 1] == Name && words[j + 2] == ">")// SELECT * FROM People WHERE name >
@@ -437,17 +498,45 @@ namespace ServerTCP
                                     }
                                     else IsCommand = false;
                                 }
-                                else if (words[j] == "ORDER") CheckOrderBy(words, ref Db, ref row, ref IsCommand, j, 4);
+                                else if (words[j] == "ORDER")
+                                {
+                                    CheckOrderBy(words, ref Db, ref row, ref IsCommand, j, 4);
+                                    for (int l = 0; l < Db.Length; l++) message = message + Db[l].age + "\n";
+                                }
                                 else IsCommand = false;
                             } // SELECT age FROM People
                             else IsCommand = false;
                             break;
                         }
                     case "INSERT":
+                        {
+                            int i = 1;
+                            if (words.Length < 4) IsCommand = false;
+                            else if (words[i] == "INTO" && words[i + 1] == table && words[i + 2] == "VALUES")
+                            {
+                                int j = i + 3;
+                                if (words.Length < 6) IsCommand = false;
+                                else if (words[j][0] == '(' && words[j][^1] == ',' && words[j][^2] == '\'' && words[j][1] == '\'' && words[j + 1][^1] == ')')
+                                {
+                                    if (ConvertToNormalString(words[j]) != null && ConvertToNormalString(words[j + 1]) != null) //INSERT INTO People VALUES ('NEWS', 19)
+                                    {
+                                        message = "\n";
+                                        message += ConvertToNormalString(words[j]) + "    " + ConvertToNormalString(words[j + 1]);
+                                        File.AppendAllText(path, message);
+                                    }
+                                    else IsCommand = false;
+                                }
+                                else IsCommand = false;
+
+                            }
+                            else IsCommand = false;
+                        }
                         break;
                     case "DELETE":
                         break;
                     case "UPDATE":
+                        break;
+                    case "INFO":
                         break;
                     default:
                         IsCommand = false;
@@ -456,7 +545,7 @@ namespace ServerTCP
             }
             int row = 0;
             database[] Db = new database[row];
-            ReadInfoAboutDataBase(ref Db, ref row) ;
+            ReadInfoAboutDataBase(ref Db, ref row);
             Console.WriteLine(row);
 
             const string ip = "127.0.0.1";
@@ -486,13 +575,16 @@ namespace ServerTCP
                 string message = "";
                 bool IsCommand = true;
                 Command(ref Db, ref row, str, ref IsCommand,ref message);
+                ReadInfoAboutDataBase(ref Db, ref row);
                 if (!IsCommand) Listener.Send(Encoding.UTF8.GetBytes("Неверно введена команда!\n"));
+                else if (str == "INFO")
+                {
+                    string fileText = await File.ReadAllTextAsync(path);
+                    Listener.Send(Encoding.UTF8.GetBytes("\n" + fileText + "\n"));
+                }
                 else
                 {
-                    //string fileText = await File.ReadAllTextAsync(path);
-                    Listener.Send(Encoding.UTF8.GetBytes("\n       База данных \n"));
-                    Listener.Send(Encoding.UTF8.GetBytes(message));
-                    //Listener.Send(Encoding.UTF8.GetBytes(fileText));
+                    Listener.Send(Encoding.UTF8.GetBytes("\n" + message));
                 }
                 Listener.Shutdown(SocketShutdown.Both);
                 Listener.Close(); // закрытие клиента
