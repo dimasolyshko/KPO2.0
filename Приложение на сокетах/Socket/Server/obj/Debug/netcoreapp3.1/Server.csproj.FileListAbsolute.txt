@@ -24,3 +24,4 @@ D:\гитхаб разработки\KPO2.0\Приложение на сокет
 D:\гитхаб разработки\KPO2.0\Приложение на сокетах\Socket\Server\obj\Debug\netcoreapp3.1\Server.dll
 D:\гитхаб разработки\KPO2.0\Приложение на сокетах\Socket\Server\obj\Debug\netcoreapp3.1\Server.pdb
 D:\гитхаб разработки\KPO2.0\Приложение на сокетах\Socket\Server\obj\Debug\netcoreapp3.1\Server.genruntimeconfig.cache
+D:\гитхаб разработки\KPO2.0\Приложение на сокетах\Socket\Server\obj\Debug\netcoreapp3.1\Server.csproj.AssemblyReference.cache
