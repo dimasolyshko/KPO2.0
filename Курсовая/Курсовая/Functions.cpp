@@ -9,22 +9,26 @@ void AddStudent(string PathOfStudentFile, student* (&Member), int& n)
 	n++;
 	Member = new student[n];
 	OldDataAboutStudentsFromFile(PathOfStudentFile, Member, n - 1); // После выделения памяти считываем Данные про прошлых студентов
-	cout << "Введите ФИО: ";
-	cin >> Surname >> Name >> Otch;
+	cout << "Введите фамилию: ";
+	Surname = ValidationString();
+	cout << "Введите имя: ";
+	Name = ValidationString();
+	cout << "Введите отчество: ";
+	Otch = ValidationString();
 	cout << "Введите Номар группы: ";
 	cin >> NumberOfGroup;
 	cout << "Введите средний балл: ";
-	cin >> mark;
+	mark = ValidationMark();
 	cout << "Записан ли на факультатив по математике студент(о - нет, 1 - да): ";
-	cin >> Math;
+	Math = ValidationFaculty();
 	cout << "Записан ли на факультатив по физике студент(о - нет, 1 - да): ";
-	cin >> Physics;
+	Physics = ValidationFaculty();
 	cout << "Записан ли на факультатив по программмированию студент(о - нет, 1 - да): ";
-	cin >> Programming;
+    Programming = ValidationFaculty();
 	cout << "Записан ли на факультатив по английскому студент(о - нет, 1 - да): ";
-	cin >> English;
+	English = ValidationFaculty();
 	cout << "Записан ли на факультатив по Базам данных студент(о - нет, 1 - да): ";
-	cin >> Database;
+	Database = ValidationFaculty();
 	Member[n-1].SetParametrs(Surname, Name, Otch, NumberOfGroup, mark, Math, Physics, Programming, English, Database);
 }
 void FindDataAbout(student* (&Member), int& n)
@@ -276,4 +280,54 @@ void ITask(student* (&Member), int& n)
 	{
 		cout << "Такого факультатива не существует" << endl;
 	}
+}
+string ValidationString()
+{
+	string str;
+	bool IsValue = true;
+	do
+	{
+		IsValue = true;
+		cin >> str;
+		for  (int i = 0; i < str.length(); i++)
+		{
+			if ((str[i] > 64 && str[i] < 91) || (str[i] > 96 && str[i] < 123));
+			else IsValue = false;
+		}
+		if (!IsValue) cout << "Ошибка валидации, попробуйте снова!" << endl;
+	} while (!IsValue);
+	return str;
+}
+double ValidationMark()
+{
+	double mark;
+	bool IsValue = true;
+	do
+	{
+		IsValue = true;
+		cin >> mark;
+		if (mark < 0 || mark > 10.0)
+		{
+			IsValue = false;
+			cout << "Ошибка валидации, попробуйте снова!" << endl;
+		}
+	} while (!IsValue);
+	return mark;
+}
+char ValidationFaculty()
+{
+	char x;
+	bool IsValue = true;
+	do
+	{
+		IsValue = true;
+		cin >> x;
+		if (x == '0' || x == '1');
+		else
+		{
+			IsValue = false;
+			cout << "Ошибка валидации, попробуйте снова!" << endl;
+		}
+	} while (!IsValue);
+	return x;
 }
