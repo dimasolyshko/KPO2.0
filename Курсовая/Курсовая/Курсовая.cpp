@@ -40,36 +40,87 @@ int main()
             }
             case 2:
             {
-                RedactUsers(PathOfUserFile,Account,NumberOfUsers);
-                WriteInFileInfoAboutUsers(PathOfUserFile, Account, NumberOfUsers);
-                break;
+                cout << "вы точно хотите отредактировать учётную запись?\n" << "1 - да, точно!\n" << "Другая цифра - Нет, Обратно в меню!" << endl;
+                int j;
+                cin >> j;
+                if (j == 1)
+                {
+                    RedactUsers(PathOfUserFile, Account, NumberOfUsers);
+                    WriteInFileInfoAboutUsers(PathOfUserFile, Account, NumberOfUsers);
+                    break;
+                }
+                else
+                {
+                    break;
+                }
             }
             case 3:
             {
-                break;
+                cout << "вы точно хотите удалить учётную запись?\n" << "1 - да, точно!\n" << "Другая цифра - Нет, Обратно в меню!" << endl;
+                int j;
+                cin >> j;
+                if (j == 1)
+                {
+
+                }
+                else
+                {
+                    break;
+                }
             }
             case 4:
             {
-                string Path;
-                cout << "Введите название нового файла" << endl;
-                cin >> Path;
-                Path += ".txt";
-                WriteInFileInfoAboutStudents(Path, Member, NumberOfStudents);
-                break;
+                cout << "вы точно хотите открыть файл?\n" << "1 - да, точно!\n" << "Другая цифра - Нет, Обратно в меню!" << endl;
+                int j;
+                cin >> j;
+                if (j == 1)
+                {
+                    string Path;
+                    cout << "Введите название нового файла" << endl;
+                    cin >> Path;
+                    Path += ".txt";
+                    WriteInFileInfoAboutStudents(Path, Member, NumberOfStudents);
+                    break;
+                }
+                else
+                {
+                    break;
+                }
             }
             case 5:
             {
+                cout << "вы точно хотите удалить учётную запись?\n" << "1 - да, точно!\n" << "Другая цифра - Нет, Обратно в меню!" << endl;
+                int j;
+                cin >> j;
+                if (j == 1)
+                {
+
+                }
+                else
+                {
+                    break;
+                }
                 break;
             }
             case 6:
             {
-                string Path;
-                cout << "Введите имя файла: ";
-                cin >> Path;
-                Path += ".txt";
-                if (remove(Path.c_str()) == 0) cout << "Файл успешно удалён!" << endl;
-                else cout << "Такого файла не существует!" << endl;
-                break;
+                cout << "вы точно хотите удалить файл?\n" << "1 - да, точно!\n" << "Другая цифра - Нет, Обратно в меню!" << endl;
+                int j;
+                cin >> j;
+                if (j == 1)
+                {
+                    string Path;
+                    cout << "Введите имя файла: ";
+                    cin >> Path;
+                    Path += ".txt";
+                    if (remove(Path.c_str()) == 0) cout << "Файл успешно удалён!" << endl;
+                    else cout << "Такого файла не существует!" << endl;
+                    break;
+                }
+                else
+                {
+                    break;
+                }
             }
             case 7:
             {
@@ -78,13 +129,33 @@ int main()
             }
             case 8:
             {
-                AddStudent(PathOfStudentFile,Member, NumberOfStudents);
-                WriteInFileInfoAboutStudents(PathOfStudentFile, Member, NumberOfStudents);
-                break;
+                cout << "вы точно хотите добавить участника?\n" << "1 - да, точно!\n" << "Другая цифра - Нет, Обратно в меню!" << endl;
+                int j;
+                cin >> j;
+                if (j == 1)
+                {
+                    AddStudent(PathOfStudentFile, Member, NumberOfStudents);
+                    WriteInFileInfoAboutStudents(PathOfStudentFile, Member, NumberOfStudents);
+                    break;
+                }
+                else
+                {
+                    break;
+                }
             }
             case 9:
             {
-                break;
+                cout << "вы точно хотите удалить участника?\n" << "1 - да, точно!\n" << "Другая цифра - Нет, Обратно в меню!" << endl;
+                int j;
+                cin >> j;
+                if (j == 1)
+                {
+
+                }
+                else
+                {
+                    break;
+                }
             }
             case 10:
             {

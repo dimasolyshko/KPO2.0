@@ -1,4 +1,11 @@
 #include "Functions.h"
+string Hash(string line) {
+	unsigned long hash = 0, degree = 176;
+	for (char c : line) {
+		hash = degree * hash + (unsigned long)c;
+	}
+	return to_string(hash);
+}
 void AddStudent(string PathOfStudentFile, student* (&Member), int& n)
 {
 
@@ -206,6 +213,7 @@ void SortMenu(student* (&Member), int& n)
 }
 void ITask(student* (&Member), int& n)
 {
+	setlocale(LC_ALL, "ru");
 	for (int i = n - 1; i >= 0; i--)
 	{
 		for (int j = 0; j < i; j++)
@@ -215,7 +223,7 @@ void ITask(student* (&Member), int& n)
 	}
 	int count = 0;
     string x;
-	cout << "Введите Какой факультатив вас интересует: ";
+	cout << "Введите Какой факультатив вас интересует (На английском языке) > ";
 	cin >> x;
 	if(x == "Maths" || x == "maths")
 	{

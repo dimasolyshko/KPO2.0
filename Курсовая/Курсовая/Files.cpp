@@ -1,4 +1,5 @@
 #include "Files.h"
+#include "Functions.h"
 bool CheckAdmin(string PathOfUserFile)
 {
     while (true)
@@ -37,6 +38,7 @@ bool CheckAdmin(string PathOfUserFile)
             }
             cout << "Введите пароль вашего аккаунта: ";
             cin >> Pass;
+            Pass = Hash(Pass);
             ofstream fout;
             fout.open(PathOfUserFile, ios::app);
             if (!fout.is_open()) cout << "Файл не открыт!" << endl;
@@ -69,6 +71,7 @@ bool CheckAdmin(string PathOfUserFile)
                     cin >> login;
                     cout << "Введите Пароль: ";
                     cin >> Pass;
+                    Pass = Hash(Pass);
                     while (!fin.eof() && end) // Проходим по файлу до конца или до совпадения логина или пароля
                     {
                         fin >> CorrectLogin;
@@ -258,6 +261,7 @@ void RedactUsers(string PathOfUsersFile, User* (&Account), int& n)
                             string newPass;
                             cout << "Введите новый пароль данной учётной записи: ";
                             cin >> newPass;
+                            newPass = Hash(newPass);
                             Account[i].Login = newlogin;
                             Account[i].Pass = newPass;
                         }
