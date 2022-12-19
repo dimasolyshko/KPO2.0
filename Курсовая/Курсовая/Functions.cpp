@@ -211,7 +211,7 @@ void SortMenu(student* (&Member), int& n)
 	}
 	}
 }
-void ITask(student* (&Member), int& n)
+void ITask1(student* (&Member), int& n)
 {
 	setlocale(LC_ALL, "ru");
 	for (int i = n - 1; i >= 0; i--)
@@ -229,65 +229,130 @@ void ITask(student* (&Member), int& n)
 	{
 		for (int i = n-1; i >=0; i--)
 		{
-			if (Member[i].GetMath() == '1' && count < 15)
+			if (Member[i].GetMath() == '1')
 			{
-				Member[i].Print();
+				if (count < 15) Member[i].Print();
 				count++;
 			}
 		}
+		cout << "\nобщее число желающих прослушать математику > " << count << endl;
 	}
 	else if (x == "Physics" || x == "physics")
 	{
 		for (int i = n - 1; i >= 0; i--)
 		{
 			int count = 0;
-			if (Member[i].GetPhysics() == '1' && count < 15)
+			if (Member[i].GetPhysics() == '1')
 			{
-				Member[i].Print();
+				if (count < 15) Member[i].Print();
 				count++;
 			}
 		}
+		cout << "\nобщее число желающих прослушать физику > " << count << endl;
 	}
 	else if (x == "Programming" || x == "programming")
 	{
 		for (int i = n - 1; i >= 0; i--)
 		{
-			int count = 0;
-			if (Member[i].GetProgramming() == '1' && count < 15)
+			if (Member[i].GetProgramming() == '1')
 			{
-				Member[i].Print();
+				if (count < 15) Member[i].Print();
 				count++;
 			}
 		}
+		cout << "\nобщее число желающих прослушать программирование > " << count << endl;
 	}
 	else if (x == "English" || x == "english")
 	{
 		for (int i = n - 1; i >= 0; i--)
 		{
-			int count = 0;
-			if (Member[i].GetEnglish() == '1' && count < 15)
+			if (Member[i].GetEnglish() == '1')
 			{
-				Member[i].Print();
+				if (count < 15) Member[i].Print();
 				count++;
 			}
 		}
+		cout << "\nобщее число желающих прослушать английский язык > " << count << endl;
 	}
 	else if (x == "Database" || x == "database")
 	{
 		for (int i = n - 1; i >= 0; i--)
 		{
-			int count = 0;
-			if (Member[i].GetDataBase() == '1' && count < 15)
+			if (Member[i].GetDataBase() == '1')
 			{
-				Member[i].Print();
+				if (count < 15) Member[i].Print();
 				count++;
 			}
 		}
+		cout << "\nобщее число желающих прослушать факультатив по Базам Данных > " << count << endl;
 	}
 	else
 	{
 		cout << "Такого факультатива не существует" << endl;
 	}
+}
+void ITask2(student* (&Member), int& n)
+{
+	string Faculties[5] = { "Математика","Физика","Программирование","Английский язык","База Данных" };
+	int Count[5] = {0,0,0,0,0};
+	for (int i = 0; i < n; i++)
+	{
+		if (Member[i].GetMath() == '1')	Count[0]++;
+		if (Member[i].GetPhysics() == '1')	Count[1]++;
+		if (Member[i].GetProgramming() == '1')	Count[2]++;
+		if (Member[i].GetEnglish() == '1')	Count[3]++;
+		if (Member[i].GetDataBase() == '1')	Count[4]++;
+	}
+	for (int i = 4; i >= 0; i--)
+	{
+		for (int j = 0; j < i; j++)
+		{
+			if (Count[j] > Count[j + 1])
+			{
+				swap(Count[j], Count[j + 1]);
+				swap(Faculties[j], Faculties[j + 1]);
+			}
+		}
+	}
+	for (int i = 4; i >= 0; i--)
+	{
+		cout << endl << Faculties[i] << " > " << Count[i] << endl;
+	}
+}
+void DeleteStudent(student* (&Member), int& n, int index)
+{
+	index--;
+	student* Buffer = new student[n];
+	for (size_t i = 0; i < n; i++)
+	{
+		Buffer[i] = Member[i];
+	}
+	n--;
+	Member = new student[n];
+	for (size_t i = 0; i < n; i++)
+	{
+		if (i < index) Member[i] = Buffer[i];
+		else if (i >= index) Member[i] = Buffer[i + 1];
+	}
+	cout << "Данный студент удалён:" << endl;
+	Buffer[index].Print();
+}
+void DeleteUser(User* (&user), int& n, int index)
+{
+	User* Buffer = new User[n];
+	for (size_t i = 0; i < n; i++)
+	{
+		Buffer[i] = user[i];
+	}
+	n--;
+	user = new User[n];
+	for (size_t i = 0; i < n; i++)
+	{
+		if (i < index) user[i] = Buffer[i];
+		else if (i >= index) user[i] = Buffer[i + 1];
+	}
+	cout << "Данный пользователь удалён:" << endl;
+	Buffer[index].Print();
 }
 string ValidationString()
 {

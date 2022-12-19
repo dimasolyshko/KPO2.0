@@ -8,3 +8,4 @@ void WriteInFileInfoAboutUsers(string PathOfUsersFile, User* (&Account), int& n)
 void DataAboutUsersFromFile(string PathOfUsersFile, User* (&Account), int& n);
 int CheckCountOfUsers(string PathOfUserFile);
 void RedactUsers(string PathOfUsersFile, User* (&Account), int& n);
+void OpenFile(string Path);

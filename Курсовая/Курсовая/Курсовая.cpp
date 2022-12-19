@@ -25,7 +25,7 @@ int main()
                 "\n7 - Посмотреть все данные" <<
                 "\n8 - Добавить запись" <<
                 "\n9 - Удалить запись" <<
-                "\n10 - Вывести студентов желающих записаться на факультатив: " <<
+                "\n10 - Выполнить индивидуальное задание!" <<
                 "\n11 - Выполнить поиск данных" <<
                 "\n12 - Выполнить сортировку" <<
                 "\n13 - Выход из программы! " << endl;
@@ -61,7 +61,17 @@ int main()
                 cin >> j;
                 if (j == 1)
                 {
-
+                    for (int i = 1; i < NumberOfUsers; i++)
+                    {
+                        Account[i].Print();
+                        cout << i << "-й" << " пользователь" << endl;
+                    }
+                    cout << "Введите Номер пользователя которого хотите удалить > ";
+                    int index;
+                    cin >> index;
+                    DeleteUser(Account, NumberOfUsers, index);
+                    WriteInFileInfoAboutUsers(PathOfUserFile, Account, NumberOfUsers);
+                    break;
                 }
                 else
                 {
@@ -70,7 +80,7 @@ int main()
             }
             case 4:
             {
-                cout << "вы точно хотите открыть файл?\n" << "1 - да, точно!\n" << "Другая цифра - Нет, Обратно в меню!" << endl;
+                cout << "вы точно хотите создать файл?\n" << "1 - да, точно!\n" << "Другая цифра - Нет, Обратно в меню!" << endl;
                 int j;
                 cin >> j;
                 if (j == 1)
@@ -89,12 +99,17 @@ int main()
             }
             case 5:
             {
-                cout << "вы точно хотите удалить учётную запись?\n" << "1 - да, точно!\n" << "Другая цифра - Нет, Обратно в меню!" << endl;
+                cout << "вы точно хотите открыть файл?\n" << "1 - да, точно!\n" << "Другая цифра - Нет, Обратно в меню!" << endl;
                 int j;
                 cin >> j;
                 if (j == 1)
                 {
-
+                    string Path;
+                    cout << "Введите название файла, который хотите открыть" << endl;
+                    cin >> Path;
+                    Path += ".txt";
+                    OpenFile(Path);
+                    break;
                 }
                 else
                 {
@@ -113,8 +128,12 @@ int main()
                     cout << "Введите имя файла: ";
                     cin >> Path;
                     Path += ".txt";
-                    if (remove(Path.c_str()) == 0) cout << "Файл успешно удалён!" << endl;
-                    else cout << "Такого файла не существует!" << endl;
+                    if (Path == PathOfUserFile) cout << "Увы! Данный файл удалить нельзя, т.к. там хранятся данные о пользователях и администраторе!";
+                    else
+                    {
+                        if (remove(Path.c_str()) == 0) cout << "Файл успешно удалён!" << endl;
+                        else cout << "Такого файла не существует!" << endl;
+                    }
                     break;
                 }
                 else
@@ -150,6 +169,17 @@ int main()
                 cin >> j;
                 if (j == 1)
                 {
+                    for (int i = 0; i < NumberOfStudents; i++)
+                    {
+                        Member[i].Print();
+                        cout << i + 1 << "-й" << " cтудент" << endl;
+                    }
+                    cout << "Введите Номер студента которого хотите удалить > ";
+                    int index;
+                    cin >> index;
+                    DeleteStudent(Member, NumberOfStudents, index);
+                    WriteInFileInfoAboutStudents(PathOfStudentFile, Member, NumberOfStudents);
+                    break;
 
                 }
                 else
@@ -159,8 +189,26 @@ int main()
             }
             case 10:
             {
-                ITask(Member, NumberOfStudents);
-                break;
+                cout << "Какое индивидуальное задание вы хотите выполнить?\n" 
+                     << "1 - Вывысти список и общее количество студентов, желающих прослушать дисциплину x!\n" 
+                     << "2 - Вывести предлагаемые дисциплины в порядке убывания популярности с указанием общего числа записавшихся на каждую из них!\n"
+                     << "Другая цифра - Нет, Обратно в меню!" << endl;
+                int j;
+                cin >> j;
+                if (j == 1)
+                {
+                    ITask1(Member, NumberOfStudents);
+                    break;
+                }
+                else if(j == 2)
+                {
+                    ITask2(Member, NumberOfStudents);
+                    break;
+                }
+                else
+                {
+                    break;
+                }
             }
             case 11:
             {
@@ -186,8 +234,65 @@ int main()
         }
         else
         {
-            cout << "Права Пользователя:" << endl;
-            end = false;
+            cout << "\nУ вас есть права пользователя\n\nВыберите что хотите сделать!\n\n" <<
+            "\n1 - Посмотреть все данные" <<
+            "\n2 - Выполнить индивидуальное задание!" <<
+            "\n3 - Выполнить поиск данных" <<
+            "\n4 - Выполнить сортировку" <<
+            "\n0 - Выход из программы! " << endl;
+            int number;
+            cin >> number;
+            switch (number)
+            {
+            case 1:
+            {
+                for (int i = 0; i < NumberOfStudents; i++) Member[i].Print();
+                break;
+            }
+            case 2:
+            {
+                cout << "Какое индивидуальное задание вы хотите выполнить?\n"
+                    << "1 - Вывысти список и общее количество студентов, желающих прослушать дисциплину x!\n"
+                    << "2 - Вывести предлагаемые дисциплины в порядке убывания популярности с указанием общего числа записавшихся на каждую из них!\n"
+                    << "Другая цифра - Нет, Обратно в меню!" << endl;
+                int j;
+                cin >> j;
+                if (j == 1)
+                {
+                    ITask1(Member, NumberOfStudents);
+                    break;
+                }
+                else if (j == 2)
+                {
+                    ITask2(Member, NumberOfStudents);
+                    break;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            case 3:
+            {
+                FindDataAbout(Member, NumberOfStudents);
+                break;
+            }
+            case 4:
+            {
+                SortMenu(Member, NumberOfStudents);
+                break;
+            }
+            case 0:
+            {
+                end = false;
+                break;
+            }
+            default:
+            {
+                cout << "Неправильный номер операции" << endl;
+                break;
+            }
+            }
         }
     }
     return 0;

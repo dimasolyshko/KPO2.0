@@ -4,7 +4,7 @@ bool CheckAdmin(string PathOfUserFile)
 {
     while (true)
     {
-        cout << "Вам необходимо авторизоваться, или войти в аккаунт!\nЕсли хотите авторизоваться напишите 0, если хотите войти в аккаунт напишите 1: ";
+        cout << "Вам необходимо Зарегистрироваться, или войти в аккаунт!\nЕсли хотите Зарегистрироваться напишите 0, если хотите войти в аккаунт напишите 1: ";
         bool NewUser = true;
         int number;
         string login, Pass, CorrectLogin, str;
@@ -289,5 +289,24 @@ void WriteInFileInfoAboutUsers(string PathOfUsersFile, User* (&Account), int& n)
             fout << Account[i].Role << endl;
         }
     }
+}
+void OpenFile(string Path)
+{
+    ifstream fin;
+    fin.open(Path);
+    if (!fin.is_open())
+    {
+        cout << "Файл не открыт, он не существует" << endl;
+    }
+    else
+    {
+        cout << "файл открыт " << endl;
+        char ch;
+        while (fin.get(ch))
+        {
+            cout << ch;
+        }
+    }
+    fin.close();
 }
 
