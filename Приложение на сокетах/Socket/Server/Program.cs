@@ -15,7 +15,7 @@ namespace ServerTCP
         const string path = "DataBase.txt";
         static async Task Main(string[] args)
         {
-            void ReadInfoAboutDataBase(ref database [] Db, ref int row)
+            void ReadInfoAboutDataBase(ref database[] Db, ref int row)
             {
                 // чтение из файла
                 using (StreamReader reader = new StreamReader(path))
@@ -36,7 +36,7 @@ namespace ServerTCP
                     }
                 }
             }
-            void SortName(ref database[] Db,ref int row)
+            void SortName(ref database[] Db, ref int row)
             {
                 for (int j = 0; j < row; j++)
                     for (int i = 0; i < row - 1; i++)
@@ -101,7 +101,7 @@ namespace ServerTCP
                         }
                     }
             }
-            void CheckOrderBy(string [] words, ref database[] Db, ref int row, ref bool IsCommand, int j, int length)
+            void CheckOrderBy(string[] words, ref database[] Db, ref int row, ref bool IsCommand, int j, int length)
             {
                 if (words.Length == length) ;
                 else if (words[j] == "ORDER" && words[j + 1] == "BY" && words[j + 2] == Age)// SELECT * FROM People WHERE age > n ORDER BY age DESC
@@ -249,7 +249,7 @@ namespace ServerTCP
                                 else if (words[j] == "ORDER")
                                 {
                                     CheckOrderBy(words, ref Db, ref row, ref IsCommand, j, 4);
-                                    for (int l = 0; l < Db.Length; l++)  message = message + Db[l].name + " " + Db[l].age + "\n";
+                                    for (int l = 0; l < Db.Length; l++) message = message + Db[l].name + " " + Db[l].age + "\n";
                                 }
                                 else IsCommand = false;
                             } // SELECT * FROM People
@@ -1795,7 +1795,6 @@ namespace ServerTCP
 
             tcpSoket.Bind(tcpEndPoint); // Прослушивание
             tcpSoket.Listen(5);
-
             while (true)
             {
                 var Listener = tcpSoket.Accept(); // новый слушатель для каждого нового клиента
@@ -1812,7 +1811,7 @@ namespace ServerTCP
                 string str = data.ToString();
                 string message = "";
                 bool IsCommand = true;
-                Command(ref Db, ref row, str, ref IsCommand,ref message);
+                Command(ref Db, ref row, str, ref IsCommand, ref message);
                 ReadInfoAboutDataBase(ref Db, ref row);
                 if (!IsCommand) Listener.Send(Encoding.UTF8.GetBytes("Неверно введена команда!\n"));
                 else if (str == "INFO")

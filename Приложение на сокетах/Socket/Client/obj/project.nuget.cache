@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "JAzzAq7t7GYOwtewE3Sc/XHAUCdKxqQBMVmFqsnte90nIAqG0u+O5XIzhexcd4XQSk/wQ+L2grO0obNxPNvDqQ==",
+  "dgSpecHash": "w6ezqNbeng+LIO/ZSDURWQ4G0O86dIf243ZjqUQG2h4qT/87j6RMIFfK2+cnzGS9XM6zW/CEVu0VOi0SIg2++g==",
   "success": true,
   "projectFilePath": "D:\\гитхаб разработки\\KPO2.0\\Приложение на сокетах\\Socket\\Client\\Client.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.25\\microsoft.netcore.app.host.win-x64.3.1.25.nupkg.sha512"
+  ],
   "logs": []
 }

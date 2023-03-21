@@ -1,6 +1,6 @@
 #pragma once
 #include "ClassStudent.h"
-bool CheckAdmin(string PathOfUserFile);
+bool Authorization(string PathOfUserFile);
 void DataAboutStudentsFromFile(string PathOfStudentFile, student* (&Member), int& n);
 void OldDataAboutStudentsFromFile(string PathOfStudentFile, student* (&Member), int n);
 void WriteInFileInfoAboutStudents(string PathOfStudentFile, student* (&Member), int& n);

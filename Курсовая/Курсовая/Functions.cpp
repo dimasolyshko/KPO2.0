@@ -1,4 +1,86 @@
 #include "Functions.h"
+void Registration(string PathOfUserFile)
+{
+	bool NewUser = true;
+	int number;
+	string login, Pass, CorrectLogin, str;
+	while (NewUser) // Цикл, который будет проходить пока не будет успешно проверен логин на уникальность будущего аккаунта!
+	{
+		NewUser = false;
+		cout << "Введите логин вашего аккаунта: ";
+		cin >> login;
+		ifstream fin;
+		fin.open(PathOfUserFile);
+		if (!fin.is_open()) cout << "Файл не открыт!" << endl;
+		else
+		{
+			while (!fin.eof())
+			{
+				fin >> CorrectLogin;
+				fin >> str;
+				fin >> str;
+				if (CorrectLogin == login) // Проверка на уникальность введённого логина
+				{
+					cout << "Такой логин уже существует попробуйте другой" << endl;
+					NewUser = true;
+					CorrectLogin = "";
+				}
+			}
+		}
+		fin.close();
+	}
+	cout << "Введите пароль вашего аккаунта: ";
+	cin >> Pass;
+	Pass = Hash(Pass);
+	ofstream fout;
+	fout.open(PathOfUserFile, ios::app);
+	if (!fout.is_open()) cout << "Файл не открыт!" << endl;
+	else // Запись данных об аккаунте в файл
+	{
+		fout << login << endl;
+		fout << Pass << endl;
+		fout << "0" << endl;
+	}
+	cout << "Вы успешно зарегистрировались, Ваш логин " << login << endl;
+	fout.close();
+}
+bool SignIn(string PathOfUserFile)
+{
+	bool end = true, Role = false;
+	while (end) //Добавляем цикл, который будет проходить пока мы не войдём в аккаунт успешно!
+	{
+		end = true;
+		ifstream fin;
+		fin.open(PathOfUserFile);
+		if (!fin.is_open())
+		{
+			cout << "Файл не открыт!" << endl;
+		}
+		else
+		{
+			string login, Pass, CorrectLogin, CorrectPass;
+			cout << "Введите Логин: ";
+			cin >> login;
+			cout << "Введите Пароль: ";
+			cin >> Pass;
+			Pass = Hash(Pass);
+			while (!fin.eof() && end) // Проходим по файлу до конца или до совпадения логина или пароля
+			{
+				fin >> CorrectLogin;
+				fin >> CorrectPass;
+				fin >> Role;
+				if (login == CorrectLogin && Pass == CorrectPass) // Проверка на совпадение пароля и логина
+				{
+					cout << "Вы успешно вошли в аккаунт!" << endl;
+					end = false;
+				}
+			}
+			if (end) cout << "Вы неправильно ввели Пароль или Логин!\nПопробуйте снова" << endl;
+		}
+		fin.close();
+	}
+	return Role; // Возвращаем роль
+}
 string Hash(string line) {
 	unsigned long hash = 0, degree = 176;
 	for (char c : line) {
@@ -38,182 +120,53 @@ void AddStudent(string PathOfStudentFile, student* (&Member), int& n)
 	Database = ValidationFaculty();
 	Member[n-1].SetParametrs(Surname, Name, Otch, NumberOfGroup, mark, Math, Physics, Programming, English, Database);
 }
-void FindDataAbout(student* (&Member), int& n)
+void AddUser(string PathOfUserFile)
 {
-	int number;
-	cout << "Введите по каким данных хотите искать: " <<
-		"\n1 - По фамилии" <<
-		"\n2 - По имени" <<
-		"\n3 - По отчеству" << 
-		"\n4 - По Номеру группы" <<
-		"\n5 - По Среднему баллу" <<endl;	    
-	cin >> number;
-	switch (number)
-	{
-	case 1:
-	{
-		string Surname;
-		cout << "Введите фамилию для поиска ";
-		cin >> Surname;
-		for (int i = 0; i < n; i++)
+	string login, Pass, CorrectLogin,str;
+	bool NewUser = true;
+		while (NewUser) // Цикл, который будет проходить пока не будет успешно проверен логин на уникальность будущего аккаунта!
 		{
-			if (Member[i].GetSurName() == Surname)
+			NewUser = false;
+			cout << "Введите логин аккаунта: ";
+			cin >> login;
+			ifstream fin;
+			fin.open(PathOfUserFile);
+			if (!fin.is_open()) cout << "Файл не открыт!" << endl;
+			else
 			{
-				cout << "Номер найденного студента : " << i + 1 << endl;
-				Member[i].Print();
+				while (!fin.eof())
+				{
+					fin >> CorrectLogin;
+					fin >> str;
+					fin >> str;
+					if (CorrectLogin == login) // Проверка на уникальность введённого логина
+					{
+						cout << "Такой логин уже существует попробуйте другой" << endl;
+						NewUser = true;
+						CorrectLogin = "";
+					}
+				}
 			}
+			fin.close();
 		}
-		break;
-	}
-	case 2:
+	cout << "Введите пароль аккаунта: ";
+	cin >> Pass;
+	Pass = Hash(Pass);
+	ofstream fout;
+	fout.open(PathOfUserFile, ios::app);
+	if (!fout.is_open()) cout << "Файл не открыт!" << endl;
+	else // Запись данных об аккаунте в файл
 	{
-		string Name;
-		cout << "Введите фамилию для поиска ";
-		cin >> Name;
-		for (int i = 0; i < n; i++)
-		{
-			if (Member[i].GetSurName() == Name)
-			{
-				cout << "Номер найденного студента : " << i + 1 << endl;
-				Member[i].Print();
-			}
-		}
-		break;
+		fout << login << endl;
+		fout << Pass << endl;
+		fout << "0" << endl;
 	}
-	case 3:
-	{
-		string Otch;
-		cout << "Введите фамилию для поиска ";
-		cin >> Otch;
-		for (int i = 0; i < n; i++)
-		{
-			if (Member[i].GetSurName() == Otch)
-			{
-				cout << "Номер найденного студента : " << i + 1 << endl;
-				Member[i].Print();
-			}
-		}
-		break;
-	}
-	case 4:
-	{
-		int NumberOfGroup;
-		cout << "Введите номер группы для поиска ";
-		cin >> NumberOfGroup;
-		for (int i = 0; i < n; i++)
-		{
-			if (Member[i].GetNumberOfGroup() == NumberOfGroup)
-			{
-				cout << "Номер найденного студента : " << i + 1 << endl;
-				Member[i].Print();
-			}
-		}
-		break;
-	}
-	case 5:
-	{
-		double Mark;
-		cout << "Введите Средний балл для поиска ";
-		cin >> Mark;
-		for (int i = 0; i < n; i++)
-		{
-			if (Member[i].GetMark() == Mark)
-			{
-				cout << "Номер найденного студента : " << i + 1 << endl;
-				Member[i].Print();
-			}
-		}
-		break;
-	}
-	default:
-	{
-		cout << "Неправильный номер операции" << endl;
-		break;
-	}
-	}
+	cout << "Вы успешно Добавили пользователя" << endl;
+	fout.close();
 }
-void SortMenu(student* (&Member), int& n)
+void SortMark(student* (&Member), int& n)
 {
-	int number;
-	cout << "Введите по каким данных хотите cортировать: " <<
-		"\n1 - По фамилии" <<
-		"\n2 - По имени" <<
-		"\n3 - По отчеству" <<
-		"\n4 - По Номеру группы" <<
-		"\n5 - По Среднему баллу" << endl;
-	cin >> number;
-	switch (number)
-	{
-	case 1:
-	{
-		for (int i = n - 1; i >= 0; i--)
-		{
-			for (int j = 0; j < i; j++)
-			{
-				if (Member[j].GetSurName() > Member[j+1].GetSurName()) swap(Member[j], Member[j + 1]);
-			}
-		}
-		cout << "Сортировка выполнена успешно!" << endl;
-		break;
-	}
-	case 2:
-	{
-		for (int i = n - 1; i >= 0; i--)
-		{
-			for (int j = 0; j < i; j++)
-			{
-				if (Member[j].GetName() > Member[j + 1].GetName()) swap(Member[j], Member[j + 1]);
-			}
-		}
-		cout << "Сортировка выполнена успешно!" << endl;
-		break;
-	}
-	case 3:
-	{
-		for (int i = n - 1; i >= 0; i--)
-		{
-			for (int j = 0; j < i; j++)
-			{
-				if (Member[j].GetOtch() > Member[j + 1].GetOtch()) swap(Member[j], Member[j + 1]);
-			}
-		}
-		cout << "Сортировка выполнена успешно!" << endl;
-		break;
-	}
-	case 4:
-	{
-		for (int i = n - 1; i >= 0; i--)
-		{
-			for (int j = 0; j < i; j++)
-			{
-				if (Member[j].GetNumberOfGroup() > Member[j + 1].GetNumberOfGroup()) swap(Member[j], Member[j + 1]);
-			}
-		}
-		cout << "Сортировка выполнена успешно!" << endl;
-		break;
-	}
-	case 5:
-	{
-		for (int i = n - 1; i >= 0; i--)
-		{
-			for (int j = 0; j < i; j++)
-			{
-				if (Member[j].GetMark() > Member[j + 1].GetMark()) swap(Member[j], Member[j + 1]);
-			}
-		}
-		cout << "Сортировка выполнена успешно!" << endl;
-		break;
-	}
-	default:
-	{
-		cout << "Неправильный номер операции" << endl;
-		break;
-	}
-	}
-}
-void ITask1(student* (&Member), int& n)
-{
-	setlocale(LC_ALL, "ru");
+	cout << "Выполнение сортировки по Среднему баллу" << endl;
 	for (int i = n - 1; i >= 0; i--)
 	{
 		for (int j = 0; j < i; j++)
@@ -221,6 +174,114 @@ void ITask1(student* (&Member), int& n)
 			if (Member[j].GetMark() > Member[j + 1].GetMark()) swap(Member[j], Member[j + 1]);
 		}
 	}
+	cout << "Сортировка выполнена успешно!" << endl;
+}
+void DeleteStudent(student* (&Member), int& n, int index)
+{
+	index--;
+	student* Buffer = new student[n];
+	for (size_t i = 0; i < n; i++)
+	{
+		Buffer[i] = Member[i];
+	}
+	n--;
+	Member = new student[n];
+	for (size_t i = 0; i < n; i++)
+	{
+		if (i < index) Member[i] = Buffer[i];
+		else if (i >= index) Member[i] = Buffer[i + 1];
+	}
+	cout << "Данный студент удалён:" << endl;
+	Buffer[index].Print();
+}
+void DeleteUser(User* (&user), int& n, int index)
+{
+	User* Buffer = new User[n];
+	for (size_t i = 0; i < n; i++)
+	{
+		Buffer[i] = user[i];
+	}
+	n--;
+	user = new User[n];
+	for (size_t i = 0; i < n; i++)
+	{
+		if (i < index) user[i] = Buffer[i];
+		else if (i >= index) user[i] = Buffer[i + 1];
+	}
+	cout << "Данный пользователь удалён:" << endl;
+	Buffer[index].Print();
+}
+string ValidationString()
+{
+	string str;
+	bool IsValue = true;
+	do
+	{
+		IsValue = true;
+		cin >> str;
+		for (int i = 0; i < str.length(); i++)
+		{
+			if ((str[i] > 64 && str[i] < 91) || (str[i] > 96 && str[i] < 123));
+			else IsValue = false;
+		}
+		if (!IsValue) cout << "Ошибка валидации, попробуйте снова!" << endl;
+	} while (!IsValue);
+	return str;
+}
+double ValidationMark()
+{
+	double mark;
+	bool IsValue = true;
+	do
+	{
+		IsValue = true;
+		cin >> mark;
+		if (mark < 0 || mark > 10.0)
+		{
+			IsValue = false;
+			cout << "Ошибка валидации, попробуйте снова!" << endl;
+		}
+	} while (!IsValue);
+	return mark;
+}
+char ValidationFaculty()
+{
+	char x;
+	bool IsValue = true;
+	do
+	{
+		IsValue = true;
+		cin >> x;
+		if (x == '0' || x == '1');
+		else
+		{
+			IsValue = false;
+			cout << "Ошибка валидации, попробуйте снова!" << endl;
+		}
+	} while (!IsValue);
+	return x;
+}
+void FindDataAboutStudent(student* (&Member), int& n)
+{
+	system("cls");
+	cout << "Поиск по фамилии" << endl;
+	string Surname;
+	cout << "Введите фамилию для поиска ";
+	cin >> Surname;
+	for (int i = 0; i < n; i++)
+	{
+		if (Member[i].GetSurName() == Surname)
+		{
+			cout << "Номер найденного студента : " << i + 1 << endl;
+			Member[i].Print();
+		}
+	}
+}
+void ITask1(student* (&Member), int& n)
+{
+	setlocale(LC_ALL, "ru");
+	SortMark(Member, n);
+	system("cls");
 	int count = 0;
     string x;
 	cout << "Введите Какой факультатив вас интересует (На английском языке) > ";
@@ -319,88 +380,4 @@ void ITask2(student* (&Member), int& n)
 		cout << endl << Faculties[i] << " > " << Count[i] << endl;
 	}
 }
-void DeleteStudent(student* (&Member), int& n, int index)
-{
-	index--;
-	student* Buffer = new student[n];
-	for (size_t i = 0; i < n; i++)
-	{
-		Buffer[i] = Member[i];
-	}
-	n--;
-	Member = new student[n];
-	for (size_t i = 0; i < n; i++)
-	{
-		if (i < index) Member[i] = Buffer[i];
-		else if (i >= index) Member[i] = Buffer[i + 1];
-	}
-	cout << "Данный студент удалён:" << endl;
-	Buffer[index].Print();
-}
-void DeleteUser(User* (&user), int& n, int index)
-{
-	User* Buffer = new User[n];
-	for (size_t i = 0; i < n; i++)
-	{
-		Buffer[i] = user[i];
-	}
-	n--;
-	user = new User[n];
-	for (size_t i = 0; i < n; i++)
-	{
-		if (i < index) user[i] = Buffer[i];
-		else if (i >= index) user[i] = Buffer[i + 1];
-	}
-	cout << "Данный пользователь удалён:" << endl;
-	Buffer[index].Print();
-}
-string ValidationString()
-{
-	string str;
-	bool IsValue = true;
-	do
-	{
-		IsValue = true;
-		cin >> str;
-		for  (int i = 0; i < str.length(); i++)
-		{
-			if ((str[i] > 64 && str[i] < 91) || (str[i] > 96 && str[i] < 123));
-			else IsValue = false;
-		}
-		if (!IsValue) cout << "Ошибка валидации, попробуйте снова!" << endl;
-	} while (!IsValue);
-	return str;
-}
-double ValidationMark()
-{
-	double mark;
-	bool IsValue = true;
-	do
-	{
-		IsValue = true;
-		cin >> mark;
-		if (mark < 0 || mark > 10.0)
-		{
-			IsValue = false;
-			cout << "Ошибка валидации, попробуйте снова!" << endl;
-		}
-	} while (!IsValue);
-	return mark;
-}
-char ValidationFaculty()
-{
-	char x;
-	bool IsValue = true;
-	do
-	{
-		IsValue = true;
-		cin >> x;
-		if (x == '0' || x == '1');
-		else
-		{
-			IsValue = false;
-			cout << "Ошибка валидации, попробуйте снова!" << endl;
-		}
-	} while (!IsValue);
-	return x;
-}
+

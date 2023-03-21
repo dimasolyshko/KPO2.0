@@ -1,4 +1,4 @@
-6
+4
 Snop Adey Provich
 63
 3.25
@@ -7,22 +7,6 @@ Snop Adey Provich
 0
 1
 0
-I A D
-76
-7.65
-1
-0
-0
-0
-1
-Solyshko Dmit And
-43
-7.56
-1
-1
-1
-1
-1
 hard kate ie
 23
 6.44
@@ -31,14 +15,6 @@ hard kate ie
 0
 1
 1
-gadr jgf dd
-23
-4.65
-1
-1
-1
-0
-1
 hgf fd fgh
 76
 6.87
@@ -46,4 +22,12 @@ hgf fd fgh
 1
 1
 0
+1
+Kharitonovich Andrey Aleksandrovich
+56
+9.56
+0
+1
+0
+1
 1

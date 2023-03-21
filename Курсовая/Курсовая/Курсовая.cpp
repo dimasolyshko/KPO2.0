@@ -7,7 +7,7 @@ int main()
     int NumberOfStudents = 0, NumberOfUsers = 0;
     bool end = true;
     string PathOfUserFile = "FileAboutUsers.txt", PathOfStudentFile = "FileAboutStudents.txt";
-    bool IsAdmin = CheckAdmin(PathOfUserFile); // Определяем Роль для Нашего аккаунта (Администратор или Пользователь) + Авторизация или вход в аккаунт
+    bool IsAdmin = Authorization(PathOfUserFile); // Определяем Роль для Нашего аккаунта (Администратор или Пользователь) + Авторизация или вход в аккаунт
     student* Member = new student [NumberOfStudents]; // Выделение памяти для Студентов
     User* Account = new User[NumberOfUsers];
     DataAboutStudentsFromFile(PathOfStudentFile, Member, NumberOfStudents);
@@ -16,7 +16,8 @@ int main()
     {
         if (IsAdmin)
         {
-            cout << "\nУ вас есть права администратора\n\nВыберите что хотите сделать!\n\n1 - Посмотреть все учётные записи пользователей" <<
+            cout << "\nУ вас есть права администратора\n\nВыберите что хотите сделать!\n\n0 - Посмотреть все учётные записи пользователей" <<
+                "\n1 - Добавить учётную запись" <<
                 "\n2 - Отредактировать учётную запись" <<
                 "\n3 - Удалить учётную запись" <<
                 "\n4 - Создать файл" <<
@@ -27,15 +28,21 @@ int main()
                 "\n9 - Удалить запись" <<
                 "\n10 - Выполнить индивидуальное задание!" <<
                 "\n11 - Выполнить поиск данных" <<
-                "\n12 - Выполнить сортировку" <<
+                "\n12 - Выполнить сортировку по среднему баллу" <<
                 "\n13 - Выход из программы! " << endl;
             int number;
             cin >> number;
             switch (number)
             {
-            case 1:
+            case 0:
             {
                 for (int i = 0; i < NumberOfUsers; i++) Account[i].Print();
+                break;
+            }
+            case 1:
+            {
+                AddUser(PathOfUserFile);
+                DataAboutUsersFromFile(PathOfUserFile, Account, NumberOfUsers);
                 break;
             }
             case 2:
@@ -213,12 +220,12 @@ int main()
             }
             case 11:
             {
-                FindDataAbout(Member, NumberOfStudents);
+                FindDataAboutStudent(Member, NumberOfStudents);
                 break;
             }
             case 12:
             {
-                SortMenu(Member, NumberOfStudents);
+                SortMark(Member, NumberOfStudents);
                 break;
             }
             case 13:
@@ -239,7 +246,7 @@ int main()
             "\n1 - Посмотреть все данные" <<
             "\n2 - Выполнить индивидуальное задание!" <<
             "\n3 - Выполнить поиск данных" <<
-            "\n4 - Выполнить сортировку" <<
+            "\n4 - Выполнить сортировку по среднему баллу" <<
             "\n0 - Выход из программы! " << endl;
             int number;
             cin >> number;
@@ -275,12 +282,12 @@ int main()
             }
             case 3:
             {
-                FindDataAbout(Member, NumberOfStudents);
+                FindDataAboutStudent(Member, NumberOfStudents);
                 break;
             }
             case 4:
             {
-                SortMenu(Member, NumberOfStudents);
+                SortMark(Member, NumberOfStudents);
                 break;
             }
             case 0:
